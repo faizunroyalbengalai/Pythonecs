@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pythonecs</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0d1117;
+      color: #e6edf3;
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      width: 100%;
+      padding: 60px 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #238636, #2ea043);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 16px;
+      padding: 52px 56px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      box-shadow:
+        0 0 0 1px rgba(48, 54, 61, 0.5),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 80px rgba(35, 134, 54, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #238636, #2ea043, #3fb950);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .project-icon {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #1c2a1e, #213327);
+      border: 1px solid #30363d;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      font-size: 2rem;
+    }
+
+    .project-name {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #e6edf3;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #e6edf3, #8b949e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .project-name span {
+      background: linear-gradient(135deg, #3fb950, #2ea043);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: #8b949e;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #21262d;
+      margin: 32px 0;
+    }
+
+    .repo-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 14px 24px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .repo-section:hover {
+      border-color: #3fb950;
+      box-shadow: 0 0 16px rgba(63, 185, 80, 0.12);
+    }
+
+    .repo-icon {
+      flex-shrink: 0;
+      color: #8b949e;
+    }
+
+    .repo-info {
+      text-align: left;
+    }
+
+    .repo-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #6e7681;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .repo-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #3fb950;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #e6edf3;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: #6e7681;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    footer {
+      width: 100%;
+      padding: 24px 20px;
+      text-align: center;
+      border-top: 1px solid #21262d;
+      color: #6e7681;
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+    }
+
+    footer strong {
+      color: #8b949e;
+      font-weight: 600;
+    }
+
+    @media (max-width: 520px) {
+      .card {
+        padding: 36px 28px;
+      }
+
+      .project-name {
+        font-size: 2rem;
+      }
+
+      .stats {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="badge">Open Source Project</div>
+
+    <div class="card">
+      <div class="project-icon">🐍</div>
+
+      <h1 class="project-name">python<span>ecs</span></h1>
+      <p class="tagline">
+        A lightweight Entity Component System framework<br />built with Python for modern application development.
+      </p>
+
+      <a class="repo-section" href="#" aria-label="View Pythonecs Repository">
+        <svg class="repo-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+        <div class="repo-info">
+          <div class="repo-label">Repository</div>
+          <div class="repo-name">Pythonecs</div>
+        </div>
+      </a>
+
+      <hr class="divider" />
+
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-value">ECS</span>
+          <span class="stat-label">Architecture</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">Python</span>
+          <span class="stat-label">Language</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">MIT</span>
+          <span class="stat-label">License</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Developed by <strong>Royal Bengal AI</strong>
+  </footer>
+
+</body>
+</html>
